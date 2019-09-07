@@ -27,7 +27,9 @@ class Canvas {
 			X: new Sprite(43, 165), //slanting clock left
 			G: new Sprite(1, 83, 80, 80), //gate
 			R: new Sprite(765, 1, 40, 80), //ring vertical
-			E: new Sprite(683, 1, 80, 40) //ring horizontal
+			E: new Sprite(683, 1, 80, 40), //ring horizontal
+			Q: new Sprite(641, 1, 40, 80), //ring collected vertical
+			W: new Sprite(559, 1, 80, 40) //ring collected horizontal
 		};
 	}
 
@@ -48,7 +50,7 @@ class Canvas {
 		this.ctx.fillStyle = '#51DAFE';
 		// this.ctx.fillStyle = '#000';
 
-		if (tile === '-' || tile === '+') {
+		if (tile === '-' || tile === '+' || tile === '#' || tile === '*') {
 			return;
 		} else {
 			this.ctx.fillRect(x - this.view.x, y - this.view.y, Tile.size, Tile.size);

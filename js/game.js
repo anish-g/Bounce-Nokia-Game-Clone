@@ -14,6 +14,7 @@ class Game {
 		this.options = options;
 		this.containerId = containerId;
 		this.gameOver = false;
+		this.checkpoint = {x: 0, y: 0};
 		this.start();
 	}
 

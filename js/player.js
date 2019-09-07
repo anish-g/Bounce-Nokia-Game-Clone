@@ -10,6 +10,8 @@ class Player extends Entity {
 		this.dead = false;
 		this.isBig = false;
 		this.passedAllRings = false;
+		this.sprite = 'ball';
+		this.spritePop = 'P';
 	}
 
 	update() {
@@ -103,10 +105,17 @@ class Player extends Entity {
 	}
 
 	draw() {
-		let sprite = 'ball';
-		this.game.canvas.drawSprite(this.x, this.y, sprite);
+		this.game.canvas.drawSprite(this.x, this.y, this.sprite);
 	}
 
+	respawn(x, y) {
+		this.dead = false;
+		this.x = this.game.checkpoint.x;
+		this.y = this.game.checkpoint.y;
+		this.game.canvas.drawSprite(this.x, this.y, this.sprite);
+		this.game.canvas.setScroll(this.x);
+	}
+	
 	touchTiles() {
 		const tiles = this.getTouchedTiles();
 		for (let tile of tiles) {
@@ -115,16 +124,48 @@ class Player extends Entity {
 			// }
 
 			if (Tile.isLethal(tile.tile)) {
-				this.kill();
+				this.kill(tile.x, tile.y);
+			}
+			
+			if (Tile.isPickable(tile.tile)) {
+				if (tile.tile === 'D') {
+					this.game.level.clearTile(tile.x, tile.y, 'C');
+					this.game.checkpoint = {x: tile.x, y: tile.y};
+				}
+
+				if (tile.tile === 'L') {
+					this.game.lives++;
+					this.game.level.clearTile(tile.x, tile.y);
+				}
+
+				if (tile.tile === 'R' || tile.tile === '+' || tile.tile === 'E' || tile.tile === '-') {
+					if (tile.tile === 'R') {
+						this.game.level.clearTile(tile.x, tile.y, 'Q');
+						this.game.level.clearTile(tile.x, tile.y + Tile.size, '*');
+					} else if (tile.tile === '+') {
+						this.game.level.clearTile(tile.x, tile.y - Tile.size, 'Q');
+						this.game.level.clearTile(tile.x, tile.y, '*');
+					} else if (tile.tile === 'E') {
+						this.game.level.clearTile(tile.x, tile.y, 'W');
+						this.game.level.clearTile(tile.x + Tile.size, tile.y, '*');
+					} else if (tile.tile === '-') {
+						this.game.level.clearTile(tile.x - Tile.size, tile.y, 'W');
+						this.game.level.clearTile(tile.x, tile.y, '*');
+					} else {
+						return;
+					}
+				}
+				
 			}
 		}
 	}
 
-	kill() {
+	kill(i, j) {
 		if(!this.dead) {
 			this.dead = true;
 			this.game.lives--;
-			this.game.restart = true;
+			// this.game.restart = true;
+			this.respawn(i, j);
 		}
 	}
 }

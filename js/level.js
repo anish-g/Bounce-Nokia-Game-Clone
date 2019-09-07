@@ -6,6 +6,7 @@ class Level {
 		this.entities = [];
 		this.player = new Player(this.game, this.map.player);
 		this.entities.push(this.player);
+		this.game.checkpoint = {x: this.map.player.x * Tile.size, y: this.map.player.y * Tile.size};
 		if (this.map.enemies) {
       		for (let enemy of this.map.enemies) {
         		this.entities.push(new Enemy(this.game, enemy.x * Tile.size, enemy.y * Tile.size));
@@ -38,12 +39,13 @@ class Level {
 		return this.map.tiles[j][i];
 	}
 
-	clearTile(x, y) {
+	clearTile(x, y, z) {
 		const [i, j] = this.getCoords(x, y);
+		const k = z || ' ';
 
 		if (this.inBounds(i, j)) {
 			const line = this.map.tiles[j];
-			this.map.tiles[j] = line.slice(0, +(i - 1) + 1 || undefined) + ' ' + line.slice(i + 1);
+			this.map.tiles[j] = line.slice(0, +(i - 1) + 1 || undefined) + k + line.slice(i + 1);
 		}
 	}
 
