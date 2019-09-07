@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en"> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="zombie">
+        <meta name="keywords" content="">
+        <link rel="shortcut icon" type="image/ico" href="">
+        <title>Bounce Nokia Game Clone</title>
+        <style>
+
+            @font-face {
+                font-family: 'GameFont';
+                src: url('assets/fonts/YanoneKaffeesatz-Bold.ttf');
+            }
+
+            body {
+                background-color: #f1f1f1;
+            }
+
+            #gameArea {
+                position: absolute;
+                width: 640px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            canvas {
+                margin: 0;
+                padding: 0;
+                display: block;
+                font-family: 'GameFont';
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="gameArea"></div>
+        <script src="js/tile.js"></script>
+        <script src="js/sprite.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/entity.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/canvas.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/level.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
