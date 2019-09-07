@@ -9,11 +9,11 @@ class LevelMap {
 				tiles: [
 					'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
 					'BB   BBBBBB          BBB         BB         BBB                  BBB      BB      BB               BB         BB',
-					'BB   BBBBBB          BBB                    BB                    BB      BB      BB               BB         BB',
-					'BB   BBBBBB   BB     BBB                    BB         D          BB  BB  BB  BB  BB  BB           BB         BB',
-					'BB   BBBBBB   BB     BBB  BBBB  BBBB  BBBB  BB                    BB  BB  BB  BB  BB  BB       BB  BB  BB     BB',
-					'BB            BB          BB     BB     BB                            BB      BB      BB    BBTBB  D   BBTBB  F-',
-					'BB            BB T        BB  T     T   BB        T  T   T   T        BB      BB      BB    BBBBB      BBBBB  --',
+					'BB   BBBBBB          BBB         R          BB                    BB      BB      BB               BB         BB',
+					'BB   BBBBBB   BB     BBB         +          BB         D          BB  BB  BB  BB  BB  BB           BB         BB',
+					'BB   BBBBBB   BB     BBB  BBBB  BBBB  BBBB  BB                    BB  BB  BB  BB  BB  BB       BBE+BBE+BB     BB',
+					'BB       R    BB          BB     BB     BB                            BB  R   BB  R   BB    BBTBB  D   BBTBB  G-',
+					'BB       +    BB T        BB  T     T   BB        T  T   T   T        BB  +   BB  +   BB    BBBBB      BBBBB  --',
 					'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
 				]
 			},

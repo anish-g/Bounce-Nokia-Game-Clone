@@ -110,8 +110,12 @@ class Player extends Entity {
 	touchTiles() {
 		const tiles = this.getTouchedTiles();
 		for (let tile of tiles) {
-			if(tile.tile === 'X') {
-				this.isBig = true;
+			// if(tile.tile === 'X') {
+			// 	this.isBig = true;
+			// }
+
+			if (Tile.isLethal(tile.tile)) {
+				this.kill();
 			}
 		}
 	}

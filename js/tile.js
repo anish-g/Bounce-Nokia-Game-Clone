@@ -7,7 +7,7 @@ class Tile {
 		return ['L'].includes(tile);
 	}
 
-	static isLeathal(tile) {
+	static isLethal(tile) {
 		return ['T'].includes(tile);
 	}
 }

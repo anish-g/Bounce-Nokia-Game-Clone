@@ -16,16 +16,18 @@ class Canvas {
 		}; 
 
 		this.sprites = {
-			ball: new Sprite(99, 1),
-			B: new Sprite(891, 1),
-			T: new Sprite(806, 1),
-			D: new Sprite(141, 1),
-			C: new Sprite(183, 1),
-			L: new Sprite(349, 1),
-			P: new Sprite(58, 1),
-			Z: new Sprite(1, 165),
-			X: new Sprite(43, 165),
-			F: new Sprite(1, 83, 80, 80) 
+			ball: new Sprite(99, 1), //small ball
+			B: new Sprite(891, 1), //red wall block
+			T: new Sprite(806, 1),  //throne
+			D: new Sprite(141, 1), //diamond checkpoint
+			C: new Sprite(183, 1), //arrow checkpoint
+			L: new Sprite(349, 1), //life
+			P: new Sprite(57, 1), //pop ball died
+			Z: new Sprite(1, 165), //slanting block right
+			X: new Sprite(43, 165), //slanting clock left
+			G: new Sprite(1, 83, 80, 80), //gate
+			R: new Sprite(765, 1, 40, 80), //ring vertical
+			E: new Sprite(683, 1, 80, 40) //ring horizontal
 		};
 	}
 
