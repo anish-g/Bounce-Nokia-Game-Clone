@@ -125,20 +125,25 @@ class Player extends Entity {
 
 			if (Tile.isLethal(tile.tile)) {
 				this.kill(tile.x, tile.y);
+				return;
 			}
 			
 			if (Tile.isPickable(tile.tile)) {
 				if (tile.tile === 'D') {
+					this.game.score += 500;
 					this.game.level.clearTile(tile.x, tile.y, 'C');
 					this.game.checkpoint = {x: tile.x, y: tile.y};
 				}
 
 				if (tile.tile === 'L') {
 					this.game.lives++;
+					this.game.score += 1000;
 					this.game.level.clearTile(tile.x, tile.y);
 				}
 
 				if (tile.tile === 'R' || tile.tile === '+' || tile.tile === 'E' || tile.tile === '-') {
+					this.game.score += 250;
+					this.game.level.ringsCollected++;
 					if (tile.tile === 'R') {
 						this.game.level.clearTile(tile.x, tile.y, 'Q');
 						this.game.level.clearTile(tile.x, tile.y + Tile.size, '*');
@@ -155,6 +160,14 @@ class Player extends Entity {
 						return;
 					}
 				}
+
+				if ((tile.tile === '=' || tile.tile === '$') && this.passedAllRings === true) {
+					this.game.score += (1000 + this.game.lives * 500);
+					this.game.level.ringsCollected = 0;
+					this.passedAllRings = false;
+					this.game.levelsCompleted++;
+					this.game.nextLevel = true;
+				}
 				
 			}
 		}
@@ -164,7 +177,6 @@ class Player extends Entity {
 		if(!this.dead) {
 			this.dead = true;
 			this.game.lives--;
-			// this.game.restart = true;
 			this.respawn(i, j);
 		}
 	}

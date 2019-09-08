@@ -4,6 +4,7 @@ class Level {
 		this.map = new LevelMap(n);
 		this.tiles = [];
 		this.entities = [];
+		this.ringsCollected = 0;
 		this.player = new Player(this.game, this.map.player);
 		this.entities.push(this.player);
 		this.game.checkpoint = {x: this.map.player.x * Tile.size, y: this.map.player.y * Tile.size};
@@ -52,8 +53,31 @@ class Level {
 	update() {
 		this.entities.map(entity => entity.update());
 	}
+
+	showGbar() {
+		const gbarCtx = this.game.canvas.gbarCtx;
+		gbarCtx.drawImage(this.game.canvas.gbarLife, 10, 5, 26, 26);
+		gbarCtx.fillStyle = '#fff';
+		gbarCtx.font = '26px Arial';
+		gbarCtx.textAlign = 'left';
+		gbarCtx.fillText('X ' + this.game.lives, 42, 28);
+
+		let ringX;
+		for (let j = 0; j < (this.map.rings - this.ringsCollected); j++) {
+			ringX = 100 + (j * 15);
+			gbarCtx.drawImage(this.game.canvas.gbarRing, ringX, 5, 11, 26);	
+		}
+		gbarCtx.textAlign = 'right';
+		gbarCtx.fillText(this.game.score, 620, 28);
+
+		gbarCtx.font = '18px Arial';
+		gbarCtx.fillText('LEVEL ' + (this.game.currentLevel + 1), 380, 24);
+	}
 	
 	draw() {
+
+		this.showGbar();
+
 		let playerX = Math.floor(this.player.x);
 		let dx;
 		if(playerX <= 297){
@@ -73,6 +97,15 @@ class Level {
 			for (let i = 0; i < line.length; i++) {
 				const tile = line[i];
 				this.drawTile(tile, i, j);
+
+				if (tile === 'G') {
+					if (Math.ceil(this.ringsCollected / 2) === this.map.rings) {
+						const nextLine = this.map.tiles[j + 1];
+						this.player.passedAllRings = true;
+						this.map.tiles[j] = line.slice(0, +(i - 1) + 1 || undefined) + '=' + line.slice(i + 1);
+						this.map.tiles[j + 1] = nextLine.slice(0, +(i - 1) + 1 || undefined) + '$' + nextLine.slice(i + 1);
+					}
+				}
 			}
 		}
 

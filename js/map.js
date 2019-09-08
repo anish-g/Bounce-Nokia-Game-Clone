@@ -15,7 +15,8 @@ class LevelMap {
 					'BB       R    BB          BB     BB     BB                            BB  R   BB  R   BB    BBTBB  D   BBTBB  G#',
 					'BB       +    BB T        BB  T     T   BB        T  T   T   T        BB  +   BB  +   BB    BBBBB      BBBBB  ##',
 					'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
-				]
+				],
+				rings : 6
 			},
 			{
 				// player: {

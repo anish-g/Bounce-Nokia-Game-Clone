@@ -4,7 +4,7 @@ class Tile {
 	}
 
 	static isPickable(tile) {
-		return ['D', 'L', 'R','E', '+', '-'].includes(tile);
+		return ['D', 'L', 'R','E', '+', '-', '=', '$'].includes(tile);
 	}
 
 	static isLethal(tile) {
