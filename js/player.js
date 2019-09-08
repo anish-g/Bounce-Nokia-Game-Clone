@@ -16,7 +16,7 @@ class Player extends Entity {
 
 	update() {
 		const { keys } = this.game.input;
-		const vel = 4.4;
+		const vel = 7;
 
 		if(keys.up.hold) {
 			if(!this.isJumping && this.canJump()) {
