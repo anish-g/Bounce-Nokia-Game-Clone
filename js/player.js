@@ -1,29 +1,39 @@
 class Player extends Entity {
 	constructor(game, position) {
-		super(game, position.x * Tile.size, position.y * Tile.size);
-		this.width = Tile.size;
-		this.height = Tile.size;
+		super(game, position.x * Tile.ballSize, position.y * Tile.ballSize);
+		this.width = Tile.ballSize;
+		this.height = Tile.ballSize;
 		this.direction = 1;
 		this.velY = 0;
 		this.isJumping = false;
 		this.t = 0;
 		this.dead = false;
-		this.isBig = false;
 		this.passedAllRings = false;
 		this.sprite = 'ball';
-		this.spritePop = 'P';
 	}
 
 	update() {
 		const { keys } = this.game.input;
 		const vel = 7;
 
+		if (this.game.isBig === true) {
+			this.sprite = 'bigball';
+			// Tile.ballSize = 54;
+			this.width = Tile.ballSize;
+			this.height = Tile.ballSize;
+		} else {
+			this.sprite = 'ball';
+			Tile.ballSize = Tile.size;
+			this.width = Tile.ballSize;
+			this.height = Tile.ballSize;
+		}
+
 		if(keys.up.hold) {
 			if(!this.isJumping && this.canJump()) {
 				this.t = 5;
           		this.isJumping = true;
           		this.velY = vel;
-          		this.jumpGoal = this.y - 4.4 * Tile.size;
+          		this.jumpGoal = this.y - 4.4 * Tile.ballSize;
 			}
 		}
 
@@ -78,9 +88,9 @@ class Player extends Entity {
 			if(direction === 'left') {
 				this.x += this.width - 1;
 			}
-			this.x = Tile.size * Math.floor(this.x / Tile.size);
+			this.x = Tile.ballSize * Math.floor(this.x / Tile.ballSize);
 			if(direction === 'right') {
-				return (this.x += Tile.size - this.width);
+				return (this.x += Tile.ballSize - this.width);
 			}
 		} else {
 			if(this.canJump()) {
@@ -91,8 +101,8 @@ class Player extends Entity {
 
 	adjustJump() {
 		if(this.clipped('up')) {
-			this.y += Tile.size;
-			this.y = Tile.size * Math.floor(this.y / Tile.size);
+			this.y += Tile.ballSize;
+			this.y = Tile.ballSize * Math.floor(this.y / Tile.ballSize);
 			this.isJumping = false;
 			this.velY = 0;
 		}
@@ -100,7 +110,7 @@ class Player extends Entity {
 
 	adjustFall() {
 		if(this.clipped('down')) {
-			this.y = Tile.size * Math.floor(this.y / Tile.size);
+			this.y = Tile.ballSize * Math.floor(this.y / Tile.ballSize);
 		}
 	}
 
@@ -108,7 +118,7 @@ class Player extends Entity {
 		this.game.canvas.drawSprite(this.x, this.y, this.sprite);
 	}
 
-	respawn(x, y) {
+	respawn() {
 		this.dead = false;
 		this.x = this.game.checkpoint.x;
 		this.y = this.game.checkpoint.y;
@@ -124,14 +134,14 @@ class Player extends Entity {
 			// }
 
 			if (Tile.isLethal(tile.tile)) {
-				this.kill(tile.x, tile.y);
+				this.kill();
 				return;
 			}
 			
 			if (Tile.isPickable(tile.tile)) {
-				if (tile.tile === 'D') {
+				if (tile.tile === 'C') {
 					this.game.score += 500;
-					this.game.level.clearTile(tile.x, tile.y, 'C');
+					this.game.level.clearTile(tile.x, tile.y, 'A');
 					this.game.checkpoint = {x: tile.x, y: tile.y};
 				}
 
@@ -163,21 +173,22 @@ class Player extends Entity {
 
 				if ((tile.tile === '=' || tile.tile === '$') && this.passedAllRings === true) {
 					this.game.score += (1000 + this.game.lives * 500);
-					this.game.level.ringsCollected = 0;
 					this.passedAllRings = false;
 					this.game.levelsCompleted++;
 					this.game.nextLevel = true;
+					this.game.level.ringsCollected = 0;
 				}
 				
 			}
 		}
 	}
 
-	kill(i, j) {
+	kill() {
 		if(!this.dead) {
 			this.dead = true;
 			this.game.lives--;
-			this.respawn(i, j);
+			this.game.isBig = false;
+			this.respawn();
 		}
 	}
 }

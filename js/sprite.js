@@ -3,8 +3,6 @@ class Sprite {
 		this.size = 40;
 		this.sw = sw || this.size;
 		this.sh = sh || this.size;
-		// this.sx = i * this.size;
-		// this.sy = j * this.size;
 		this.sx = i;
 		this.sy = j;
 		this.dw = this.sw * (Tile.size / this.size);

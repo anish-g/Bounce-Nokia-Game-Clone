@@ -10,7 +10,7 @@ class Game {
 		this.restart = false;
 		this.nextLevel = false;
 		this.currentLevel = 0;
-		this.lastLevel = 1;
+		this.lastLevel = 2;
 		this.options = options;
 		this.containerId = containerId;
 		this.gameOver = false;
@@ -18,6 +18,7 @@ class Game {
 		this.score = 0;
 		this.checkpoint = {x: 0, y: 0};
 		this.levelsCompleted = 0;
+		this.isBig = false;
 		this.start();
 	}
 
@@ -31,16 +32,19 @@ class Game {
 	update() {
 		if (this.lives <= 0) {
 			this.gameWon = false;
+			this.currentLevel = 0;
+			this.isBig = false;
 			this.end();
 			window.cancelAnimationFrame(this.animator);
 			return false;
 		}
 
 		if (this.nextLevel) {
-			this.nextLevel = false;
 			this.currentLevel++;
 			if(this.currentLevel >= this.lastLevel) {
 				this.gameWon = true;
+				this.isBig = false;
+				this.currentLevel = 0;
 				this.end();
 				window.cancelAnimationFrame(this.animator);
 				return false;
@@ -154,7 +158,7 @@ class Game {
 				endCtx.fillStyle = 'blue';
 				endCtx.fillText('CONGRATULATIONS', 120, 160);
 				endCtx.fillText('YOU WON!', 120, 200);
-				endCtx.drawImage(nextBtn, 277, 185, 148, 50);	
+				endCtx.drawImage(nextBtn, 277, 185, 148, 50);
 			} else {
 				endCtx.drawImage(failed, 60, 30, 120, 100);
 				endCtx.fillStyle = 'green';

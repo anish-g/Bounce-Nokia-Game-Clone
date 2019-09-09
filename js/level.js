@@ -79,18 +79,33 @@ class Level {
 		this.showGbar();
 
 		let playerX = Math.floor(this.player.x);
-		let dx;
-		if(playerX <= 297){
+		let playerY = Math.floor(this.player.y);
+		let dx, dy;
+		if (playerX <= 297) {
 			dx = 0;
 		}
-		else if(playerX >= (Tile.size * this.map.tiles[0].length - 342)) {
+		else if (playerX > (Tile.size * this.map.tiles[0].length - 342)) {
 			dx = Tile.size * this.map.tiles[0].length - 640;
-		}
-		else{
+		} else {
 			dx = this.player.x - 297;
 		}
+		// if (this.game.currentLevel === 0) {
+		// 	dy = 0;
+		// } else {
+		// 	dy = playerY - 270;
+		// 	// dy = playerY;	
+		// }
 
-		this.game.canvas.setScroll(dx);
+		if (playerY <= 157) {
+			dy = 0;
+		} else if(playerY > (Tile.size * this.map.tiles.length - 202)) {
+			dy = Tile.size * this.map.tiles.length - 360;
+		} else {
+			dy = this.player.y - 157
+		}
+		
+
+		this.game.canvas.setScroll(dx, dy);
 		
 		for (let j = 0; j < this.map.tiles.length; j++) {
 			const line = this.map.tiles[j];

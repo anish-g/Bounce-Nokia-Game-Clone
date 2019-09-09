@@ -29,12 +29,16 @@ class Canvas {
 
 		this.sprites = {
 			ball: new Sprite(99, 1), //small ball
+			bigball: new Sprite(1, 1, 54, 54), //big ball
+			throne: new Sprite(267 ,1, 80, 80), //throne enemy
 			B: new Sprite(891, 1), //red wall block
-			T: new Sprite(806, 1),  //throne
-			D: new Sprite(141, 1), //diamond checkpoint
-			C: new Sprite(183, 1), //arrow checkpoint
+			T: new Sprite(807, 1),  //throne
+			P: new Sprite(517, 1), //pumper
+			D: new Sprite(225, 1), //deflater 
+			C: new Sprite(141, 1), //diamond checkpoint
+			A: new Sprite(183, 1), //arrow checkpoint
 			L: new Sprite(349, 1), //life
-			P: new Sprite(57, 1), //pop ball died
+			pop: new Sprite(57, 1), //pop ball died
 			Z: new Sprite(1, 165), //slanting block right
 			X: new Sprite(43, 165), //slanting clock left
 			G: new Sprite(1, 83, 80, 80), //gate closed
@@ -46,8 +50,9 @@ class Canvas {
 		};
 	}
 
-	setScroll(dx) {
+	setScroll(dx, dy) {
 		this.view.x = dx;
+		this.view.y = dy;
 	}
 
 	drawTile(tile, i, j) {
