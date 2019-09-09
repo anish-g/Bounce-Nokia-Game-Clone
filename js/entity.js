@@ -48,10 +48,12 @@ class Entity {
 		const tiles = this.getTouchedTiles();
 
 		for (let i = 0; i < tiles.length; i++) {
-			if (tiles[i].tile === 'P') {
+			if (tiles[i].tile === 'P' || tiles[i].tile === 'O') {
 				this.game.isBig = true;
-			} else if (tiles[i].tile === 'D') {
+			} else if (tiles[i].tile === 'D' || tiles[i].tile === '%') {
 				this.game.isBig = false;
+			} else if (tiles[i].tile === 'I') {
+				this.game.canBounce = true;
 			}
 		}
 

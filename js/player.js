@@ -33,7 +33,12 @@ class Player extends Entity {
 				this.t = 5;
           		this.isJumping = true;
           		this.velY = vel;
-          		this.jumpGoal = this.y - 4.4 * Tile.ballSize;
+          		
+          		if (!this.game.canBounce) {
+          			this.jumpGoal = this.y - 4.4 * Tile.ballSize;	
+          		} else {
+          			this.jumpGoal = this.y - 8.5 * Tile.ballSize;
+          		}
 			}
 		}
 
@@ -53,6 +58,7 @@ class Player extends Entity {
 			this.velY -= 0.01;
 			
 			if(this.y <= this.jumpGoal) {
+				this.game.canBounce = false;
 				this.y = this.jumpGoal;
 				this.isJumping = false;
 				this.velY = 0;
@@ -105,6 +111,7 @@ class Player extends Entity {
 			this.y = Tile.ballSize * Math.floor(this.y / Tile.ballSize);
 			this.isJumping = false;
 			this.velY = 0;
+			this.game.canBounce = false;
 		}
 	}
 
@@ -122,6 +129,11 @@ class Player extends Entity {
 		this.dead = false;
 		this.x = this.game.checkpoint.x;
 		this.y = this.game.checkpoint.y;
+		if (this.game.checkpoint.big === true) {
+			this.game.isBig = true;
+		} else {
+			this.game.isBig = false;
+		}
 		this.game.canvas.drawSprite(this.x, this.y, this.sprite);
 		this.game.canvas.setScroll(this.x);
 	}
@@ -129,10 +141,6 @@ class Player extends Entity {
 	touchTiles() {
 		const tiles = this.getTouchedTiles();
 		for (let tile of tiles) {
-			// if(tile.tile === 'X') {
-			// 	this.isBig = true;
-			// }
-
 			if (Tile.isLethal(tile.tile)) {
 				this.kill();
 				return;
@@ -142,7 +150,7 @@ class Player extends Entity {
 				if (tile.tile === 'C') {
 					this.game.score += 500;
 					this.game.level.clearTile(tile.x, tile.y, 'A');
-					this.game.checkpoint = {x: tile.x, y: tile.y};
+					this.game.checkpoint = {x: tile.x, y: tile.y, big: this.game.isBig};
 				}
 
 				if (tile.tile === 'L') {
@@ -179,6 +187,12 @@ class Player extends Entity {
 					this.game.level.ringsCollected = 0;
 				}
 				
+				if (tile.tile === '0' && this.game.isBig === true) {
+					// console.log('ball y: '+this.y+'   tile y: '+tile.y);
+					if (this.y < tile.y) {
+						this.y -= 5;
+					}
+				}
 			}
 		}
 	}
@@ -187,7 +201,11 @@ class Player extends Entity {
 		if(!this.dead) {
 			this.dead = true;
 			this.game.lives--;
-			this.game.isBig = false;
+			if (this.game.currentLevel === 2) {
+				this.game.isBig = true;
+			} else {
+				this.game.isBig = false;
+			}
 			this.respawn();
 		}
 	}

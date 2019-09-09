@@ -10,15 +10,16 @@ class Game {
 		this.restart = false;
 		this.nextLevel = false;
 		this.currentLevel = 0;
-		this.lastLevel = 2;
+		this.lastLevel = 3;
 		this.options = options;
 		this.containerId = containerId;
 		this.gameOver = false;
 		this.gameWon = false;
 		this.score = 0;
-		this.checkpoint = {x: 0, y: 0};
+		this.checkpoint = {x: 0, y: 0, big: false};
 		this.levelsCompleted = 0;
 		this.isBig = false;
+		this.canBounce = false;
 		this.start();
 	}
 

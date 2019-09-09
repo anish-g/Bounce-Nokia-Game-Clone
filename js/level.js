@@ -5,12 +5,15 @@ class Level {
 		this.tiles = [];
 		this.entities = [];
 		this.ringsCollected = 0;
+		if (this.game.currentLevel === 2) {
+			this.game.isBig = true;
+		}
 		this.player = new Player(this.game, this.map.player);
 		this.entities.push(this.player);
 		this.game.checkpoint = {x: this.map.player.x * Tile.size, y: this.map.player.y * Tile.size};
 		if (this.map.enemies) {
       		for (let enemy of this.map.enemies) {
-        		this.entities.push(new Enemy(this.game, enemy.x * Tile.size, enemy.y * Tile.size));
+        		this.entities.push(new Enemy(this.game, enemy.x * Tile.size, enemy.y * Tile.size, enemy.d));
       		}
     	}
 	}
@@ -89,12 +92,6 @@ class Level {
 		} else {
 			dx = this.player.x - 297;
 		}
-		// if (this.game.currentLevel === 0) {
-		// 	dy = 0;
-		// } else {
-		// 	dy = playerY - 270;
-		// 	// dy = playerY;	
-		// }
 
 		if (playerY <= 157) {
 			dy = 0;
@@ -115,10 +112,15 @@ class Level {
 
 				if (tile === 'G') {
 					if (Math.ceil(this.ringsCollected / 2) === this.map.rings) {
-						const nextLine = this.map.tiles[j + 1];
+						let currentLine = this.map.tiles[j];
+						let nextLine = this.map.tiles[j + 1];
 						this.player.passedAllRings = true;
-						this.map.tiles[j] = line.slice(0, +(i - 1) + 1 || undefined) + '=' + line.slice(i + 1);
-						this.map.tiles[j + 1] = nextLine.slice(0, +(i - 1) + 1 || undefined) + '$' + nextLine.slice(i + 1);
+						currentLine = currentLine.slice(0, +(i - 1) + 1 || undefined) + '=' + line.slice(i + 1);
+						currentLine = currentLine.slice(0, +(i) + 1 || undefined) + '$' + line.slice(i + 2);
+						this.map.tiles[j] = currentLine;
+						nextLine = nextLine.slice(0, +(i - 1) + 1 || undefined) + '$' + nextLine.slice(i + 1);
+						nextLine = nextLine.slice(0, +(i) + 1 || undefined) + '$' + nextLine.slice(i + 2);
+						this.map.tiles[j + 1] = nextLine;
 					}
 				}
 			}

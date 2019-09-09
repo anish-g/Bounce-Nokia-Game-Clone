@@ -1,14 +1,14 @@
 class Tile {
 	static isSolid(tile) {
-		return ['B', 'F', 'D', 'P', '#'].includes(tile);
+		return ['B', 'F', 'D', 'P', 'O', '%', 'S', 'I', '#'].includes(tile);
 	}
 
 	static isPickable(tile) {
-		return ['C', 'L', 'R','E', '+', '-', '=', '$'].includes(tile);
+		return ['C', 'L', 'R','E', '+', '-', '=', '$', '0'].includes(tile);
 	}
 
 	static isLethal(tile) {
-		return ['T'].includes(tile);
+		return ['T', 'Y'].includes(tile);
 	}
 }
 

@@ -30,23 +30,33 @@ class Canvas {
 		this.sprites = {
 			ball: new Sprite(99, 1), //small ball
 			bigball: new Sprite(1, 1, 54, 54), //big ball
-			throne: new Sprite(267 ,1, 80, 80), //throne enemy
-			B: new Sprite(891, 1), //red wall block
-			T: new Sprite(807, 1),  //throne
-			P: new Sprite(517, 1), //pumper
-			D: new Sprite(225, 1), //deflater 
+			throne: new Sprite(309 ,1, 80, 80), //throne enemy
+			B: new Sprite(85, 165), //red wall block
+			T: new Sprite(891, 1),  //throne
+			Y: new Sprite(1, 165), //upside-down throne
+			P: new Sprite(559, 1), //pumper
+			O: new Sprite(601, 1), //upside-down pumper 
+			S: new Sprite(517, 1), //power speed
+			D: new Sprite(225, 1), //deflater
+			'%': new Sprite(267, 1), //upside-down deflater 
 			C: new Sprite(141, 1), //diamond checkpoint
 			A: new Sprite(183, 1), //arrow checkpoint
-			L: new Sprite(349, 1), //life
-			pop: new Sprite(57, 1), //pop ball died
-			Z: new Sprite(1, 165), //slanting block right
-			X: new Sprite(43, 165), //slanting clock left
+			L: new Sprite(391, 1), //life
+			pop: new Sprite(58, 1), //pop ball died
+			Z: new Sprite(127, 165), //slanting block right
+			V: new Sprite(169, 165), //upside-down slanting left
+			X: new Sprite(211, 165), //slanting clock left
+			N: new Sprite(253, 165), //upside-down slanting clock right
+			I: new Sprite(43, 165), //bounce block
 			G: new Sprite(1, 83, 80, 80), //gate closed
 			'=': new Sprite(802, 83, 80, 80), //gate opened
-			R: new Sprite(765, 1, 40, 80), //ring vertical
-			E: new Sprite(683, 1, 80, 40), //ring horizontal
-			Q: new Sprite(641, 1, 40, 80), //ring collected vertical
-			W: new Sprite(559, 1, 80, 40) //ring collected horizontal
+			R: new Sprite(849, 1, 40, 80), //ring vertical
+			E: new Sprite(767, 1, 80, 40), //ring horizontal
+			Q: new Sprite(725, 1, 40, 80), //ring collected vertical
+			W: new Sprite(643, 1, 80, 40), //ring collected horizontal
+			'0': new Sprite(295, 165), //water
+			'6': new Sprite(475, 1), //power jump
+			'7': new Sprite(433, 1), //power gravity
 		};
 	}
 
