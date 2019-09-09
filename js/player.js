@@ -203,8 +203,10 @@ class Player extends Entity {
 			this.game.lives--;
 			if (this.game.currentLevel === 2) {
 				this.game.isBig = true;
+				this.game.checkpoint.big = true;
 			} else {
 				this.game.isBig = false;
+				this.game.checkpoint.big = false;
 			}
 			this.respawn();
 		}
