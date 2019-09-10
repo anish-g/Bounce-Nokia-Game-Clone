@@ -63,6 +63,14 @@ class Entity {
 			left: [tiles[0].tile, tiles[2].tile],
 			right: [tiles[1].tile, tiles[3].tile]
 		};
+
+		if (this.game.isBig && this.game.floatUp && (mapping.up[0] === 'B' || mapping.up[1] === 'B')) {
+			this.game.floatUp = false;
+		} else if (!this.game.floatUp && (mapping.up[0] != 'B' && mapping.up[1] != 'B')) {
+			this.game.floatUp = true; 
+		}
+
+
 		return mapping[direction].map(Tile.isSolid).reduce((acc, cur) => acc || cur);
 	}
 

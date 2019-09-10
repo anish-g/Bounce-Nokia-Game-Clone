@@ -13,7 +13,7 @@ class Level {
 		this.game.checkpoint = {x: this.map.player.x * Tile.size, y: this.map.player.y * Tile.size};
 		if (this.map.enemies) {
       		for (let enemy of this.map.enemies) {
-        		this.entities.push(new Enemy(this.game, enemy.x * Tile.size, enemy.y * Tile.size, enemy.d));
+        		this.entities.push(new Enemy(this.game, enemy.x * Tile.size, enemy.y * Tile.size, enemy.d, enemy.dist));
       		}
     	}
 	}

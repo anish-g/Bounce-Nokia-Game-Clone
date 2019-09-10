@@ -1,5 +1,5 @@
 class Enemy extends Entity {
-	constructor(game, x, y, d) {
+	constructor(game, x, y, d, dist) {
 		super(game, x, y);
 		this.width = Tile.size * 2;
 		this.height = Tile.size * 2;
@@ -8,10 +8,15 @@ class Enemy extends Entity {
 		this.directionY = 1;
 		this.directionX = 1;
 		this.sideways = d;
+		if (this.sideways === 1) {
+			this.distance = dist;
+		} else {
+			this.distance = 4;
+		}
 		this.orgY = this.y;
 		this.orgX = this.x;
-		this.destY = (this.y + Tile.size * 4);
-		this.destX = (this.x + Tile.size * 10);
+		this.destY = (this.y + Tile.size * this.distance);
+		this.destX = (this.x + Tile.size * this.distance);
 	}
 
 	move() {

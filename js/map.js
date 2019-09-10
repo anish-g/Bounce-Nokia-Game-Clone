@@ -73,6 +73,11 @@ class LevelMap {
 						x: 61,
 						y: 15,
 						d: 0
+					},
+					{
+						x: 93,
+						y: 15,
+						d: 0
 					}
 				]
 			},
@@ -179,7 +184,109 @@ class LevelMap {
 					{
 						x: 98,
 						y: 29,
-						d: 1
+						d: 1,
+						dist: 10
+					}
+				]
+			},
+			{
+				player: {
+					x: 99,
+					y: 22
+				},
+				// player: {
+				// 	x: 59,
+				// 	y: 15
+				// },
+				tiles: [
+					'                      BBBBBBBBBBBBBBBBBBBBBBBB                                                                                        ',
+					'                      BBBBN              BBBBB                                                                                        ',
+					'                      BBBB               BBBBB                                                                                        ',
+					'                      BBG#               BBBBB                                                                                        ',
+					'                      BB##               BBBBB                                                                                        ',
+					'                      BBBBZ              BBBBB                                                                                        ',
+					'                      BBBBBBBBBBBB          BB                                                                                        ',
+					'                      BBBBBBBBBBBB          BB                                                                                        ',
+					'                      BB    C               BB                                                                                        ',
+					'                      BB                    BB                                                                                        ',
+					'                      BB                    BB                                                                                        ',
+					'                      BB                    BB                                                                                        ',
+					'                      BB              T     BB                                                                                        ',
+					'                      BB              BBIIIIBB                                                                                        ',
+					'BBBBBBBBBBBBBBBBBBBBBBBB                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                      ',
+					'BBL                                                     R                 R    R                R             BB                      ',
+					'BB                                                      +                 +    +                +             BB                      ',
+					'BBE-                         XIIIIZ                  BBZ  XBB             VBBBBN        BB                    BB                      ',
+					'BBC                   BBBBBBBBBBBBBZ              X  BBBZXBBB  Z           VBBN         BB      BB    BB  C   BB                      ',
+					'BB                    BBBBBBBBBBBBBBZ            XB  BBBBBBBB  BZ     XT Z      XT Z    BB      BB    BB      BB                      ',
+					'BB                    BBBBBBBBBBBBBBBZ          XBB  BB    BB  BBZ   XBBBBZ T  XBBBBZ   BB  T   BB    BB  DD  BB                      ',
+					'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+					'                      BB    BB        BB                                               VBBBB  BBBN    VBBB  BBBBC                 C BB',
+					'                      BB L  BB        BB                                                BBBB  BBN      VBB  BBBB                    BB',
+					'                      BB    BB        BB    BB                       II  II    II  II   BBBB  BN  XBBZ  VB  BBBBBBBB          BBBBBBBB',
+					'                      BB    BB        BB    BB    X    Z X   Z        IIII  C   IIII    BBBB  N  XBBBBZ  V  BBBBBBBN          VBBBBBBB',
+					'                      BB                    BB   XB    BZB   BZ       IIII      IIII            XBBBBBBZ          R            R  O BB',
+					'                      BB                    BB     IIII   III         IIIIIIIIIIIIII           XBBBBBBBBZ         +            +  P BB',
+					'                      BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+
+				],
+				rings: 7,
+				enemies: [
+					{
+						x: 5,
+						y: 19,
+						d: 1,
+						dist: 15
+					},
+					{
+						x: 51,
+						y: 15,
+						d: 0
+					},
+					{
+						x: 61,
+						y: 15,
+						d: 0
+					},
+					{
+						x: 92,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 106,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 118,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 106,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 122,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 31,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 33,
+						y: 22,
+						d: 0
+					},
+					{
+						x: 35,
+						y: 22,
+						d: 0
 					}
 				]
 			}

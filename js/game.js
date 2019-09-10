@@ -10,7 +10,7 @@ class Game {
 		this.restart = false;
 		this.nextLevel = false;
 		this.currentLevel = 0;
-		this.lastLevel = 3;
+		this.lastLevel = 4;
 		this.options = options;
 		this.containerId = containerId;
 		this.gameOver = false;
@@ -20,6 +20,8 @@ class Game {
 		this.levelsCompleted = 0;
 		this.isBig = false;
 		this.canBounce = false;
+		this.floatUp = true;
+		this.inWater = false;
 		this.start();
 	}
 

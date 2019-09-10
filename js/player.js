@@ -35,9 +35,13 @@ class Player extends Entity {
           		this.velY = vel;
           		
           		if (!this.game.canBounce) {
-          			this.jumpGoal = this.y - 4.4 * Tile.ballSize;	
+          			if (this.game.isBig) {
+          				this.jumpGoal = this.y - 6.6 * Tile.ballSize;
+          			} else {
+          				this.jumpGoal = this.y - 4.4 * Tile.ballSize;	
+          			}
           		} else {
-          			this.jumpGoal = this.y - 8.5 * Tile.ballSize;
+          			this.jumpGoal = this.y - 9 * Tile.ballSize;
           		}
 			}
 		}
@@ -188,9 +192,10 @@ class Player extends Entity {
 				}
 				
 				if (tile.tile === '0' && this.game.isBig === true) {
-					// console.log('ball y: '+this.y+'   tile y: '+tile.y);
-					if (this.y < tile.y) {
-						this.y -= 5;
+					if (this.y < tile.y && this.game.floatUp === true) {
+						this.y -= 4;
+					} else if (this.game.floatUp === false) {
+						this.y = tile.y - Tile.size;
 					}
 				}
 			}
