@@ -368,20 +368,24 @@ class Game {
 
 			if (gameWon) {
 				if (xVal > 277 && xVal < 425 && yVal > 185 && yVal < 235) {
-					// self.nextLevel = true;
-					// self.score = 0;
-					// self.lives = 3;
-					// container.removeChild(endCanvas);
-					// window.removeEventListener('click', endScreenEventHandler);
-					// self.loop();
 					self.frame = 1;
 					self.score = 0;
 					self.lives = 3;
-					self.nextLevel = true;
-					self.levelComplete = false;
-					container.removeChild(endCanvas);
-					window.removeEventListener('click', endScreenEventHandler);
-					self.loop();
+					if (this.currentLevel < this.lastLevel - 1) {
+						self.nextLevel = true;
+						self.levelComplete = false;
+						container.removeChild(endCanvas);
+						window.removeEventListener('click', endScreenEventHandler);
+						self.loop();
+					} else {
+						self.levelComplete = false;
+						container.removeChild(endCanvas);
+						container.removeChild(self.canvas.canvas);
+						container.removeChild(self.canvas.gbarCanvas);
+						window.removeEventListener('click', endScreenEventHandler);
+						self.start();
+					}
+					
 				}
 				if (xVal > 217 && xVal < 267 && yVal > 185 && yVal < 235) {
 					self.restart = true;
@@ -393,7 +397,6 @@ class Game {
 					self.loop();
 				}
 				if (xVal > 157 && xVal < 207 && yVal > 185 && yVal < 235) {
-					self.restart = true;
 					self.lives = 3;
 					self.score = 0;
 					self.levelComplete = false;

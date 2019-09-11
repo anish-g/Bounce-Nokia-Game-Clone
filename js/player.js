@@ -185,7 +185,7 @@ class Player extends Entity {
 
 				if ((tile.tile === '=' || tile.tile === '$') && this.passedAllRings === true) {
 					this.game.score += (1000 + this.game.lives * 500);
-					this.game.gameData[this.game.currentLevel + 1].locked = false;
+
 					if (this.game.lives >= 3 && this.passedAllRings) {
 						this.game.stars = 3;
 					} else if (this.game.lives >= 2 && this.game.score >= 4000) {
@@ -197,6 +197,10 @@ class Player extends Entity {
 					if (this.game.gameData[this.game.currentLevel].stars < this.game.stars) {
 						this.game.gameData[this.game.currentLevel].stars = this.game.stars;
 					} 
+
+					if (this.game.currentLevel < this.game.lastLevel - 1) {
+						this.game.gameData[this.game.currentLevel + 1].locked = false;
+					}
 
 					this.game.saveGameData();
 					this.game.levelComplete = true;
