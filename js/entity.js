@@ -15,7 +15,6 @@ class Entity {
 
 	getCorners() {
 		const offset = 1;
-		// console.log(this.width, this.height)
 		const xs = [this.x + offset, this.x + this.width - offset];
 		const ys = [this.y, this.y + this.height - offset];
 

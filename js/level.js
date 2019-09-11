@@ -1,6 +1,7 @@
 class Level {
 	constructor(game, n) {
 		this.game = game;
+		this.game.currentLevel = n;
 		this.map = new LevelMap(n);
 		this.tiles = [];
 		this.entities = [];
