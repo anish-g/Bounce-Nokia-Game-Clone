@@ -371,19 +371,19 @@ class Game {
 					self.frame = 1;
 					self.score = 0;
 					self.lives = 3;
-					if (this.currentLevel < this.lastLevel - 1) {
-						self.nextLevel = true;
-						self.levelComplete = false;
-						container.removeChild(endCanvas);
-						window.removeEventListener('click', endScreenEventHandler);
-						self.loop();
-					} else {
+					if (this.currentLevel === this.lastLevel - 1) {
 						self.levelComplete = false;
 						container.removeChild(endCanvas);
 						container.removeChild(self.canvas.canvas);
 						container.removeChild(self.canvas.gbarCanvas);
 						window.removeEventListener('click', endScreenEventHandler);
 						self.start();
+					} else {
+						self.nextLevel = true;
+						self.levelComplete = false;
+						container.removeChild(endCanvas);
+						window.removeEventListener('click', endScreenEventHandler);
+						self.loop();
 					}
 					
 				}
