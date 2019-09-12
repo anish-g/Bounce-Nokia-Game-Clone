@@ -60,22 +60,23 @@ class Level {
 
 	showGbar() {
 		const gbarCtx = this.game.canvas.gbarCtx;
+		gbarCtx.clearRect(0, 0, 630, 40);
 		gbarCtx.drawImage(this.game.canvas.gbarLife, 10, 5, 26, 26);
 		gbarCtx.fillStyle = '#fff';
-		gbarCtx.font = '26px Arial';
+		gbarCtx.font = '26px GameFont';
 		gbarCtx.textAlign = 'left';
 		gbarCtx.fillText('X ' + this.game.lives, 42, 28);
 
 		let ringX;
-		for (let j = 0; j < (this.map.rings - this.ringsCollected); j++) {
-			ringX = 100 + (j * 15);
+		for (let j = 0; j < (this.map.rings - Math.ceil(this.ringsCollected / 2)); j++) {
+			ringX = 80 + (j * 15);
 			gbarCtx.drawImage(this.game.canvas.gbarRing, ringX, 5, 11, 26);	
 		}
 		gbarCtx.textAlign = 'right';
 		gbarCtx.fillText(this.game.score, 620, 28);
 
-		gbarCtx.font = '18px Arial';
-		gbarCtx.fillText('LEVEL ' + (this.game.currentLevel + 1), 380, 24);
+		gbarCtx.font = '18px GameFont';
+		gbarCtx.fillText('LEVEL ' + (this.game.currentLevel + 1), 350, 24);
 	}
 	
 	draw() {

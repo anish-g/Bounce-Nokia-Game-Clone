@@ -36,6 +36,7 @@ class Game {
 			this.render();
 			this.animator = window.requestAnimationFrame(this.loop.bind(this));
 		}
+		console.log(this.currentLevel >= (this.lastLevel - 1));
 	}
 
 	update() {
@@ -371,7 +372,7 @@ class Game {
 					self.frame = 1;
 					self.score = 0;
 					self.lives = 3;
-					if (this.currentLevel === this.lastLevel - 1) {
+					if (self.currentLevel >= (self.lastLevel - 1)) {
 						self.levelComplete = false;
 						container.removeChild(endCanvas);
 						container.removeChild(self.canvas.canvas);
